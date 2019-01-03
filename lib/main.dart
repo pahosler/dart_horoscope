@@ -37,7 +37,6 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // backgroundColor: Colors.pink[50],
       appBar: AppBar(
         centerTitle: true,
         title: Text(widget.title),
@@ -45,17 +44,12 @@ class _HomePageState extends State<HomePage> {
       body: Column(
         children: <Widget>[
           Container(
-            child: Center(
-              child: Container(
-                padding: EdgeInsets.all(20.0),
-                height: 250.0,
-                width: double.infinity,
-                child: Wheel(),
-              ),
-            ),
+            padding: EdgeInsets.all(20.0),
+            height: 300.0,
+            child: Wheel(),
           ),
         ],
-      ), // This trailing comma makes auto-formatting nicer for build methods.
+      ),
     );
   }
 }
