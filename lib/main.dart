@@ -3,11 +3,11 @@ import 'package:horoscope/widgets/wheel.dart';
 import 'package:horoscope/widgets/asyncHoroscope.dart';
 import 'dart:async';
 
-void main() => runApp(Horoscope(astro: fetchPost()));
+void main() => runApp(Horoscope(zodiac: fetchPost()));
 
 class Horoscope extends StatelessWidget {
-  final Future<Astro> astro;
-  Horoscope({Key key, this.astro}) : super(key: key);
+  final Future<Zodiac> zodiac;
+  Horoscope({Key key, this.zodiac}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
