@@ -78,7 +78,7 @@ class _WheelState extends State<Wheel> with SingleTickerProviderStateMixin {
                     : null, //() => controller.forward(from: 0.0),
                 child: Image.asset(
                   "images/zodiacwheel.png",
-                  fit: BoxFit.cover,
+                  fit: BoxFit.contain,
                 ),
               ),
               Positioned(

@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:horoscope/widgets/wheel.dart';
+import 'package:horoscope/widgets/asyncHoroscope.dart';
+import 'dart:async';
 
-// import 'dart:math' as math;
-
-void main() => runApp(Horoscope());
+void main() => runApp(Horoscope(astro: fetchPost()));
 
 class Horoscope extends StatelessWidget {
+  final Future<Astro> astro;
+  Horoscope({Key key, this.astro}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -41,13 +43,15 @@ class _HomePageState extends State<HomePage> {
         centerTitle: true,
         title: Text(widget.title),
       ),
-      body: Column(
+      body: ListView(
         children: <Widget>[
           Container(
             padding: EdgeInsets.all(20.0),
             height: 300.0,
             child: Wheel(),
           ),
+          Container(
+              height: 100.0, width: double.infinity, child: AsyncHoroscope()),
         ],
       ),
     );
