@@ -3,9 +3,8 @@ import 'dart:async';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 
-Future<Zodiac> fetchPost() async {
-  final response = await http.get('https://cyber-side.glitch.me/api/capricorn');
-  // print('hello world!!!');
+Future<Zodiac> fetchPost(sign) async {
+  final response = await http.get('https://cyber-side.glitch.me/api/$sign');
   if (response.statusCode == 200) {
     // If the call to the server was successful, parse the JSON
     // print('${response.body}');
@@ -15,16 +14,6 @@ Future<Zodiac> fetchPost() async {
     throw Exception('Failed to load post');
   }
 }
-
-// Zodiac zodiacFromJson(String str) {
-//   final jsonData = json.decode(str);
-//   return Zodiac.fromJson(jsonData);
-// }
-
-// String zodiacToJson(Zodiac data) {
-//   final dyn = data.toJson();
-//   return json.encode(dyn);
-// }
 
 class Zodiac {
   ZodiacClass zodiac;
@@ -110,7 +99,7 @@ class Sign {
       };
 }
 
-void main() => runApp(AsyncHoroscope(zodiac: fetchPost()));
+// void main() => runApp(AsyncHoroscope(zodiac: fetchPost(sign)));
 
 class AsyncHoroscope extends StatelessWidget {
   final Future<Zodiac> zodiac;
@@ -126,13 +115,23 @@ class AsyncHoroscope extends StatelessWidget {
           height: 100.0,
           width: 350.00,
           child: FutureBuilder<Zodiac>(
-            future: zodiac,
+            future: fetchPost('capricorn'),
             builder: (context, snapShot) {
-              // print('mr Zodiac ${snapShot.data.sign}');
+              // print('mr Zodiac ${snapShot.data.zodiac}');
               if (snapShot.hasData) {
-                print(
-                    'hello are you there??? ${snapShot.data.zodiac.sign.name}');
-                return Text("${snapShot.data.zodiac.description}");
+                // print('hello are you there???'); // ${snapShot.data.zodiac}');
+                return Container(
+                  child: Column(
+                    children: <Widget>[
+                      Text(
+                        "${snapShot.data.zodiac.sign.name} ${snapShot.data.zodiac.sign.start} thru ${snapShot.data.zodiac.sign.end}",
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold, fontSize: 18),
+                      ),
+                      Text("${snapShot.data.zodiac.description}"),
+                    ],
+                  ),
+                );
               } else if (snapShot.hasError) {
                 // print('something happened!');
                 return Text("${snapShot.error}");
