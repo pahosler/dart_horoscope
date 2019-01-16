@@ -3,24 +3,12 @@ import 'package:horoscope/widgets/wheel.dart';
 import 'package:horoscope/widgets/asyncHoroscope.dart';
 import 'dart:async';
 
-class Horoscope extends StatelessWidget {
-  final Future<Zodiac> zodiac;
-  Horoscope({Key key, this.zodiac}) : super(key: key);
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Horoscope',
-      theme: ThemeData(
-          primaryColor: Colors.pink[100],
-          backgroundColor: Colors.pink[200],
-          scaffoldBackgroundColor: Colors.pink[50]),
-      home: HomePage(title: 'Daily Horoscope'),
-    );
-  }
-}
+
 
 class HomePage extends StatefulWidget {
-  HomePage({Key key, this.title}) : super(key: key);
+  final Future<Zodiac> zodiac;
+  HomePage({Key key, this.zodiac, this.title}) : super(key: key);
+  //HomePage({Key key, this.title}) : super(key: key);
 
   final String title;
 
@@ -49,7 +37,9 @@ class _HomePageState extends State<HomePage> {
             child: Wheel(),
           ),
           Container(
-              height: 100.0, width: double.infinity, child: AsyncHoroscope()),
+              height: 100.0, width: double.infinity, child: AsyncHoroscope(
+            zodiac: fetchPost("virgo"),
+          )),
         ],
       ),
     );

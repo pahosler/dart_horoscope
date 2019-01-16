@@ -115,11 +115,9 @@ class AsyncHoroscope extends StatelessWidget {
           height: 100.0,
           width: 350.00,
           child: FutureBuilder<Zodiac>(
-            future: fetchPost('capricorn'),
+            future: zodiac,//fetchPost('capricorn'),
             builder: (context, snapShot) {
-              // print('mr Zodiac ${snapShot.data.zodiac}');
               if (snapShot.hasData) {
-                // print('hello are you there???'); // ${snapShot.data.zodiac}');
                 return Container(
                   child: Column(
                     children: <Widget>[
