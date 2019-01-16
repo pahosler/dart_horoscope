@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/animation.dart';
+import 'package:horoscope/widgets/asyncHoroscope.dart';
 import 'dart:math' as math;
 
 class Wheel extends StatefulWidget {
   Wheel({Key key}) : super(key: key);
-
   @override
   _WheelState createState() => _WheelState();
 }
@@ -13,6 +13,7 @@ class _WheelState extends State<Wheel> with SingleTickerProviderStateMixin {
   int _counter = 0;
   int _pressed = 0;
   bool _isbuttonDisabled = false;
+  String sign;
   final _offset = 15;
   final _angle = 30;
   final _signs = [
@@ -53,6 +54,7 @@ class _WheelState extends State<Wheel> with SingleTickerProviderStateMixin {
   // @override
   void wheelNum(int signNum) {
     print("You have chosen ${_signs[signNum]}");
+    sign = _signs[signNum];
     controller.forward(from: 0.0);
     this.setState(() {
       this._pressed = signNum;
@@ -65,7 +67,7 @@ class _WheelState extends State<Wheel> with SingleTickerProviderStateMixin {
       fit: StackFit.expand,
       children: <Widget>[
         Transform.rotate(
-          //degress to radians offSet = 13, sign = (0 to 11) *30
+          //degrees to radians offSet = 13, sign = (0 to 11) *30
           angle: (_offset + _counter * _angle) *
               math.pi /
               180, // 13 offset is capricorn
@@ -220,6 +222,14 @@ class _WheelState extends State<Wheel> with SingleTickerProviderStateMixin {
             ],
           ),
         ),
+        Positioned(
+          top: 220.0,
+          left: -10.0,
+          child: Container(
+            height: 290.0, width: 300.0, child: AsyncHoroscope(
+              zodiac: fetchPost(sign),
+          )),
+        )
       ],
     ); // This trailing comma makes auto-formatting nicer for build methods.
   }

@@ -132,7 +132,7 @@ class AsyncHoroscope extends StatelessWidget {
                 );
               } else if (snapShot.hasError) {
                 // print('something happened!');
-                return Text("${snapShot.error}");
+                return Text("Select a Sign");
               }
               return CircularProgressIndicator();
             },

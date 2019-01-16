@@ -29,17 +29,17 @@ class _HomePageState extends State<HomePage> {
         centerTitle: true,
         title: Text(widget.title),
       ),
-      body: ListView(
+      body: Column(
         children: <Widget>[
           Container(
             padding: EdgeInsets.all(20.0),
             height: 300.0,
             child: Wheel(),
           ),
-          Container(
-              height: 100.0, width: double.infinity, child: AsyncHoroscope(
-            zodiac: fetchPost("virgo"),
-          )),
+//          Container(
+//              height: 100.0, width: double.infinity, child: AsyncHoroscope(
+//            zodiac: fetchPost("virgo"),
+//          )),
         ],
       ),
     );
