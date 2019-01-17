@@ -13,7 +13,7 @@ For help getting started with Flutter, view the
 [online documentation](https://flutter.io/docs), which offers tutorials,
 samples, guidance on mobile development, and a full API reference.
 
-If you want to run this app:
+### If you want to run this app:
 
 1. [Install flutter](https://flutter.io/docs/get-started/install) if you haven't already
 2. Clone this repository

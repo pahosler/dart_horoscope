@@ -54,7 +54,6 @@ class _WheelState extends State<Wheel> with SingleTickerProviderStateMixin {
 
   // @override
   void wheelNum(int signNum) {
-    print("You have chosen ${_signs[signNum]}");
     sign = _signs[signNum];
     controller.forward(from: 0.0);
     this.setState(() {
@@ -68,7 +67,7 @@ class _WheelState extends State<Wheel> with SingleTickerProviderStateMixin {
       fit: StackFit.expand,
       children: <Widget>[
         Positioned(
-          top: 15.0,
+          top: 10.0,
           height: 260.0,
           left: 30.0,
           width: 260.0,
@@ -80,14 +79,9 @@ class _WheelState extends State<Wheel> with SingleTickerProviderStateMixin {
             child: Stack(
               fit: StackFit.passthrough,
               children: <Widget>[
-                FloatingActionButton(
-                  onPressed: _isbuttonDisabled
-                      ? null
-                      : null, //() => controller.forward(from: 0.0),
-                  child: Image.asset(
-                    "images/zodiacwheel.png",
-                    fit: BoxFit.contain,
-                  ),
+                Image.asset(
+                  "images/zodiacwheel.png",
+                  fit: BoxFit.scaleDown,
                 ),
                 Positioned(
                   // capricorn
@@ -235,14 +229,15 @@ class _WheelState extends State<Wheel> with SingleTickerProviderStateMixin {
           top: 275.0,
           left: 15.0,
           child: Container(
-              height: 200.0,
-              width: 300.0,
-              child: AsyncHoroscope(
-                zodiac: fetchPost(sign),
-              )),
+            height: 200.0,
+            width: 300.0,
+            child: AsyncHoroscope(
+            zodiac: fetchPost(sign),
+            ),
+          ),
         )
       ],
-    ); // This trailing comma makes auto-formatting nicer for build methods.
+    );
   }
 
   @override

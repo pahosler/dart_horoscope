@@ -29,12 +29,7 @@ class _HomePageState extends State<HomePage> {
         centerTitle: true,
         title: Text(widget.title),
       ),
-      body: Container(
-//              padding: EdgeInsets.all(20.0),
-        height: double.infinity,
-        width: double.infinity,
-        child: Wheel(),
-      ),
+      body: Wheel(),
     );
   }
 }

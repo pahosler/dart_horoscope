@@ -7,7 +7,6 @@ Future<Zodiac> fetchPost(sign) async {
   final response = await http.get('https://cyber-side.glitch.me/api/$sign');
   if (response.statusCode == 200) {
     // If the call to the server was successful, parse the JSON
-    // print('${response.body}');
     return Zodiac.fromJson(json.decode(response.body));
   } else {
     // If that call was not successful, throw an error.
@@ -99,15 +98,13 @@ class Sign {
       };
 }
 
-// void main() => runApp(AsyncHoroscope(zodiac: fetchPost(sign)));
-
 class AsyncHoroscope extends StatelessWidget {
   final Future<Zodiac> zodiac;
   AsyncHoroscope({Key key, this.zodiac}) : super(key: key);
 
+
   @override
   Widget build(BuildContext context) {
-    // print('zodiac... ${this.zodiac}');
     return Column(
       children: <Widget>[
         Container(
@@ -115,7 +112,7 @@ class AsyncHoroscope extends StatelessWidget {
           height: 300.0,
           width: 300.00,
           child: FutureBuilder<Zodiac>(
-            future: zodiac,//fetchPost('capricorn'),
+            future: zodiac,
             builder: (context, snapShot) {
               if (snapShot.hasData) {
                 return Container(
@@ -131,17 +128,23 @@ class AsyncHoroscope extends StatelessWidget {
                   ),
                 );
               } else if (snapShot.hasError) {
-                // print('something happened!');
                 return Container(
+                  child: Text("Select a Sign",
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                      fontWeight: FontWeight.bold, fontSize: 18),),
+                );
+              } else {
+                return Center(
+                  child: Container(
+                    padding: EdgeInsets.all(20.0),
+                    height: 20.0, width: 20.0,
+                    child: CircularProgressIndicator(
 
-                  child: Center(
-                    child: Text("Select a Sign",
-                        style: TextStyle(
-                        fontWeight: FontWeight.bold, fontSize: 18),),
+                      strokeWidth: 1.0,),
                   ),
                 );
               }
-              return Container(padding: EdgeInsets.all(20.0),height: 20.0, width: 20.0,child: Center(child: CircularProgressIndicator()));
             },
           ),
         ),
