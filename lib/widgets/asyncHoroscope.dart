@@ -102,7 +102,6 @@ class AsyncHoroscope extends StatelessWidget {
   final Future<Zodiac> zodiac;
   AsyncHoroscope({Key key, this.zodiac}) : super(key: key);
 
-
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -129,19 +128,21 @@ class AsyncHoroscope extends StatelessWidget {
                 );
               } else if (snapShot.hasError) {
                 return Container(
-                  child: Text("Select a Sign",
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                      fontWeight: FontWeight.bold, fontSize: 18),),
+                  child: Text(
+                    "Select a Sign",
+                    textAlign: TextAlign.center,
+                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
+                  ),
                 );
               } else {
                 return Center(
                   child: Container(
                     padding: EdgeInsets.all(20.0),
-                    height: 20.0, width: 20.0,
+                    height: 20.0,
+                    width: 20.0,
                     child: CircularProgressIndicator(
-
-                      strokeWidth: 1.0,),
+                      strokeWidth: 1.0,
+                    ),
                   ),
                 );
               }
