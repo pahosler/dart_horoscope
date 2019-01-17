@@ -111,9 +111,9 @@ class AsyncHoroscope extends StatelessWidget {
     return Column(
       children: <Widget>[
         Container(
-          padding: EdgeInsets.all(20),
-          height: 100.0,
-          width: 350.00,
+          padding: EdgeInsets.all(10),
+          height: 300.0,
+          width: 300.00,
           child: FutureBuilder<Zodiac>(
             future: zodiac,//fetchPost('capricorn'),
             builder: (context, snapShot) {
@@ -132,9 +132,16 @@ class AsyncHoroscope extends StatelessWidget {
                 );
               } else if (snapShot.hasError) {
                 // print('something happened!');
-                return Text("Select a Sign");
+                return Container(
+
+                  child: Center(
+                    child: Text("Select a Sign",
+                        style: TextStyle(
+                        fontWeight: FontWeight.bold, fontSize: 18),),
+                  ),
+                );
               }
-              return CircularProgressIndicator();
+              return Container(padding: EdgeInsets.all(20.0),height: 20.0, width: 20.0,child: Center(child: CircularProgressIndicator()));
             },
           ),
         ),
