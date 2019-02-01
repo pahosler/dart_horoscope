@@ -3,8 +3,6 @@ import 'package:horoscope/widgets/wheel.dart';
 import 'package:horoscope/widgets/asyncHoroscope.dart';
 import 'dart:async';
 
-
-
 class HomePage extends StatefulWidget {
   final Future<Zodiac> zodiac;
   HomePage({Key key, this.zodiac, this.title}) : super(key: key);

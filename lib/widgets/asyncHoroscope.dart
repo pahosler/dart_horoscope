@@ -104,52 +104,56 @@ class AsyncHoroscope extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: <Widget>[
-        Container(
-          padding: EdgeInsets.all(10),
-          height: 300.0,
-          width: 300.00,
-          child: FutureBuilder<Zodiac>(
-            future: zodiac,
-            builder: (context, snapShot) {
-              if (snapShot.hasData) {
-                return Container(
-                  child: Column(
-                    children: <Widget>[
-                      Text(
-                        "${snapShot.data.zodiac.sign.name} ${snapShot.data.zodiac.sign.start} thru ${snapShot.data.zodiac.sign.end}",
-                        style: TextStyle(
-                            fontWeight: FontWeight.bold, fontSize: 18),
+    return Container(
+      padding: EdgeInsets.all(10),
+      height: 200,
+      width: double.infinity,
+      child: FutureBuilder<Zodiac>(
+        future: zodiac,
+        builder: (context, snapShot) {
+          if (snapShot.hasData) {
+            return Container(
+              width: double.infinity,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: <Widget>[
+                  Center(
+                    child: Text(
+                      "${snapShot.data.zodiac.sign.name} ${snapShot.data.zodiac.sign.start} thru ${snapShot.data.zodiac.sign.end}",
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 18.0,
                       ),
-                      Text("${snapShot.data.zodiac.description}"),
-                    ],
-                  ),
-                );
-              } else if (snapShot.hasError) {
-                return Container(
-                  child: Text(
-                    "Select a Sign",
-                    textAlign: TextAlign.center,
-                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
-                  ),
-                );
-              } else {
-                return Center(
-                  child: Container(
-                    padding: EdgeInsets.all(20.0),
-                    height: 20.0,
-                    width: 20.0,
-                    child: CircularProgressIndicator(
-                      strokeWidth: 1.0,
                     ),
                   ),
-                );
-              }
-            },
-          ),
-        ),
-      ],
+                  Text(
+                    "${snapShot.data.zodiac.description}",
+                    style: TextStyle(fontSize: 18.0),
+                  ),
+                ],
+              ),
+            );
+          } else if (snapShot.hasError) {
+            print(snapShot.error);
+            return Text(
+              "Select a Sign",
+              textAlign: TextAlign.center,
+              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
+            );
+          } else {
+            return Container(
+              padding: EdgeInsets.all(20.0),
+              height: 20.0,
+              width: 20.0,
+              child: Center(
+                child: CircularProgressIndicator(
+                  strokeWidth: 1.0,
+                ),
+              ),
+            );
+          }
+        },
+      ),
     );
   }
 }
