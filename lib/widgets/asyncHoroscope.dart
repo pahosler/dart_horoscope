@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'dart:async';
 import 'dart:convert';
+import 'package:intl/intl.dart';
 import 'package:http/http.dart' as http;
 
 Future<Zodiac> fetchPost(sign) async {
@@ -117,6 +118,12 @@ class AsyncHoroscope extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: <Widget>[
+                  Center(
+                    child: Text(
+                      "${DateFormat.yMMMd().format(DateTime.now())}",
+                      style: TextStyle(fontSize: 18.0),
+                    ),
+                  ),
                   Center(
                     child: Text(
                       "${snapShot.data.zodiac.sign.name} ${snapShot.data.zodiac.sign.start} thru ${snapShot.data.zodiac.sign.end}",

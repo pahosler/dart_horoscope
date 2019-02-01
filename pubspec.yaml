@@ -16,6 +16,7 @@ dependencies:
   flutter:
     sdk: flutter
   http: ^0.12.0
+  intl: ^0.15.7
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
@@ -41,7 +42,6 @@ flutter:
   #  - images/a_dot_ham.jpeg
   assets:
     - images/zodiacwheel.png
-
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.io/assets-and-images/#resolution-aware.
   # For details regarding adding assets from package dependencies, see
